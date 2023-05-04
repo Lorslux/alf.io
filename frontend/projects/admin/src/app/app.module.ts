@@ -23,6 +23,7 @@ import { OrganizationsComponent } from './organizations/organizations.component'
 import { OrganizationEditComponent } from './organization-edit/organization-edit.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AccessControlComponent } from './access-control/access-control.component';
+import { ApiKeySystemComponent } from './api-key-system/api-key-system.component';
 
 
 export function RedirectToLoginIfNeeded(userService: UserService, router: Router): () => Promise<boolean> {
@@ -48,6 +49,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     OrganizationsComponent,
     OrganizationEditComponent,
     AccessControlComponent,
+    ApiKeySystemComponent,
   ],
   imports: [
     BrowserModule,

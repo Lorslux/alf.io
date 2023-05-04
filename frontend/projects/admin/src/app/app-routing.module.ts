@@ -4,6 +4,7 @@ import {MissingOrgComponent} from './missing-org/missing-org.component';
 import { OrganizationsComponent } from './organizations/organizations.component';
 import { OrganizationEditComponent } from './organization-edit/organization-edit.component';
 import { AccessControlComponent } from './access-control/access-control.component';
+import { ApiKeySystemComponent } from './api-key-system/api-key-system.component';
 
 const routes: Routes = [
   {
@@ -33,6 +34,10 @@ const routes: Routes = [
   {
     path: 'access-control',
     component: AccessControlComponent,
+  },
+  {
+    path: 'access-control/api-keys',
+    component: ApiKeySystemComponent,
   },
   {
     path: '',
