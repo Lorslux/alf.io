@@ -7,7 +7,9 @@ export class ApiKeyService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getApiKeys() : Observable<T[]>{
-
+  getApiKeys() : any{
+    return this.httpClient.get<any>('/admin/api/organizations').subscribe((org) => {
+      console.log(org)
+    });
   }
 }

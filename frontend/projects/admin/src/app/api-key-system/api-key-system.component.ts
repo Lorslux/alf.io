@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ApiKeySystemComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private httpClient: HttpClient) { }
+  getApiKeys() : any{
+    return this.httpClient.get<any>('/admin/api/users').subscribe((user) => {
+      console.log(user)
+    });
+  }
   ngOnInit(): void {
+  this.getApiKeys();
   }
 
 }

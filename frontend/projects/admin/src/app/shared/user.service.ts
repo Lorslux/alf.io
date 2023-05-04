@@ -26,4 +26,9 @@ export class UserService {
   getCurrent(): Observable<UserInfo> {
     return this.httpClient.get<UserInfo>('/admin/api/users/current');
   }
+  getApiKeys() : any{
+    return this.httpClient.get<any>('/admin/api/users').subscribe((user) => {
+      console.log(user)
+    });
+  }
 }
