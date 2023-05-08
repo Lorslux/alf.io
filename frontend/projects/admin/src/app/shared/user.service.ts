@@ -77,4 +77,5 @@ export class UserService {
   update(user: User) : Observable<any>{
     return this.httpClient.post<any>('/admin/api/users/edit', user);
   }
+
 }

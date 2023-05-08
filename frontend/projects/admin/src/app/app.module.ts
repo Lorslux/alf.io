@@ -21,12 +21,15 @@ import {HttpLoginInterceptor, redirectToLogin} from "./shared/http-login.interce
 import {AlfioCommonModule} from "common";
 import { OrganizationsComponent } from './organizations/organizations.component';
 import { OrganizationEditComponent } from './organization-edit/organization-edit.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AccessControlComponent } from './access-control/access-control.component';
 import { ApiKeySystemComponent } from './api-key-system/api-key-system.component';
 
 import { UserSystemComponent } from './user-system/user-system.component';
 import { UserSystemEditComponent } from './user-system-edit/user-system-edit.component';
+import { ApiKeySystemEditComponent } from './api-key-system-edit/api-key-system-edit.component';
+import { ApiKeySystemBulkComponent } from './api-key-system-bulk/api-key-system-bulk.component';
+
 
 export function RedirectToLoginIfNeeded(userService: UserService, router: Router): () => Promise<boolean> {
   return async () => {
@@ -54,6 +57,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     ApiKeySystemComponent,
     UserSystemComponent,
     UserSystemEditComponent,
+    ApiKeySystemEditComponent,
+    ApiKeySystemBulkComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,6 +66,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AuthenticationModule,
     HttpClientModule,
     ReactiveFormsModule,
+    FormsModule,
     HttpClientXsrfModule.withOptions({
       cookieName: 'XSRF-TOKEN',
       headerName: 'X-CSRF-TOKEN',

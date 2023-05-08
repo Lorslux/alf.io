@@ -1,61 +1,59 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Organization } from '../model/organization';
+import { Observable, map, of } from 'rxjs';
+import { User } from '../model/user';
 import { OrganizationService } from '../shared/organization.service';
 import { UserService } from '../shared/user.service';
-import { Observable, map, of } from 'rxjs';
-import { Organization } from '../model/organization';
-import { Role } from '../model/role';
 import { ActivatedRoute, Router } from '@angular/router';
-import { RoleType, User } from '../model/user';
+import { Role } from '../model/role';
 
 @Component({
-  selector: 'app-user-system-edit',
-  templateUrl: './user-system-edit.component.html',
-  styleUrls: ['./user-system-edit.component.scss'],
+  selector: 'app-api-key-system-edit',
+  templateUrl: './api-key-system-edit.component.html',
+  styleUrls: ['./api-key-system-edit.component.scss'],
 })
-export class UserSystemEditComponent implements OnInit {
-  public userId: string | null = null;
+export class ApiKeySystemEditComponent implements OnInit {
   public userForm: FormGroup;
-  public organizations$?: Observable<Organization[]>;
-  public roles$?: Observable<Role[]>;
   public editMode: boolean | undefined;
+  public organizations$?: Observable<Organization[]>;
   public user$: Observable<User | null> = of();
+  public roles$?: Observable<Role[]>;
+  public userId: string | null = null;
+
   constructor(
-    private readonly route: ActivatedRoute,
     formBuilder: FormBuilder,
     private readonly organizationService: OrganizationService,
     private readonly userService: UserService,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly route: ActivatedRoute
   ) {
     this.userForm = formBuilder.group({
-      target: null,
       id: [null],
       organizationId: [null, Validators.required],
       role: [null, Validators.required],
-      username: [null, Validators.required],
-      firstName: [null, Validators.required],
-      lastName: [null, Validators.required],
-      emailAddress: [null, Validators.required],
+      description: [null],
+      username: [null],
+      lastName: [null],
+      firstName: [null],
+      emailAddress: [null],
+      type: ['API_KEY'],
     });
   }
-
-  get userName() {
-    return this.userForm.get('username');
-  }
-  get userLastName() {
-    return this.userForm.get('lastName');
-  }
-  get userFirstName() {
-    return this.userForm.get('firstName');
+  get organizationDescription() {
+    return this.userForm.get('description');
   }
 
-  get userMail() {
-    return this.userForm.get('emailAddress');
+  get organizationName() {
+    return this.userForm.get('organizationId');
+  }
+
+  get role() {
+    return this.userForm.get('role');
   }
 
   ngOnInit(): void {
     this.userId = this.route.snapshot.paramMap.get('userId');
-
     this.organizations$ = this.organizationService.getOrganizations();
     this.roles$ = this.userService.getAllRoles().pipe(
       map((roles) => {
@@ -68,6 +66,7 @@ export class UserSystemEditComponent implements OnInit {
       this.user$ = this.userService.getUser(this.userId);
       this.user$.subscribe((user) => {
         if (user) this.userForm.patchValue(user);
+        console.log(user);
       });
     } else {
       this.editMode = false;
@@ -82,9 +81,7 @@ export class UserSystemEditComponent implements OnInit {
       result = this.userService.create(this.userForm.value);
     }
     result.subscribe((res) => {
-      if (res === 'OK') {
-        this.router.navigate(['/access-control/users']);
-      }
+      this.router.navigate(['/access-control/api-keys']);
     });
   }
 

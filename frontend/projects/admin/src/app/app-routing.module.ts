@@ -7,6 +7,8 @@ import { AccessControlComponent } from './access-control/access-control.componen
 import { ApiKeySystemComponent } from './api-key-system/api-key-system.component';
 import { UserSystemComponent } from './user-system/user-system.component';
 import { UserSystemEditComponent } from './user-system-edit/user-system-edit.component';
+import { ApiKeySystemEditComponent } from './api-key-system-edit/api-key-system-edit.component';
+import { ApiKeySystemBulkComponent } from './api-key-system-bulk/api-key-system-bulk.component';
 
 const routes: Routes = [
   {
@@ -53,6 +55,19 @@ const routes: Routes = [
     path: 'access-control/api-keys',
     component: ApiKeySystemComponent,
   },
+  {
+    path: 'access-control/api-keys/new',
+    component: ApiKeySystemEditComponent,
+  },
+    {
+    path: 'access-control/api-keys/:userId/edit',
+    component: ApiKeySystemEditComponent,
+  },
+  {
+    path: 'access-control/api-keys/bulk',
+    component: ApiKeySystemBulkComponent,
+  },
+
   {
     path: '',
     component: MissingOrgComponent,
