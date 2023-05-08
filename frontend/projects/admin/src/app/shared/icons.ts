@@ -12,6 +12,10 @@ import {accountcircleIcon} from "../svg/accountcircle";
 import { addCircleNewIcon } from '../svg/add-circle-new';
 import { editIcon } from '../svg/edit';
 import { keyIcon } from '../svg/key';
+import { resetIcon } from '../svg/reset';
+import { deleteIcon } from '../svg/delete';
+import { visibilityoffIcon } from '../svg/visibilityoff';
+import { visibilityOnIcon } from '../svg/visibility-on';
 
 const ICONS = [
   checkIcon,
@@ -29,6 +33,12 @@ const ICONS = [
   addCircleNewIcon,
   editIcon,
   keyIcon,
+  resetIcon,
+  deleteIcon,
+  visibilityoffIcon,
+  visibilityOnIcon,
+
+
 
 ];
 export const ICON_CONFIG = {

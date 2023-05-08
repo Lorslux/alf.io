@@ -25,6 +25,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AccessControlComponent } from './access-control/access-control.component';
 import { ApiKeySystemComponent } from './api-key-system/api-key-system.component';
 
+import { UserSystemComponent } from './user-system/user-system.component';
+import { UserSystemEditComponent } from './user-system-edit/user-system-edit.component';
 
 export function RedirectToLoginIfNeeded(userService: UserService, router: Router): () => Promise<boolean> {
   return async () => {
@@ -50,6 +52,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     OrganizationEditComponent,
     AccessControlComponent,
     ApiKeySystemComponent,
+    UserSystemComponent,
+    UserSystemEditComponent,
   ],
   imports: [
     BrowserModule,
